@@ -13,6 +13,14 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
+
+# -*- coding:utf8 -*-
+
+ADMINS = (
+     ('Angel', 'sjaces@gmail.com'),
+)
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -36,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -65,7 +74,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-Es'
 
 TIME_ZONE = 'UTC'
 
