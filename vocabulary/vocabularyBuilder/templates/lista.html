@@ -6,14 +6,14 @@
   </head>
   <body>
     <h1>Lista de Palabras</h1>
-    {% for elemento in lista %}
+    {% for elemento in todas_palabras %}
     
              <p><strong>{{elemento.palabra_A}}</strong>: 
               {{elemento.palabra_B}} ->
-              {{elemento.fecha}}</p>
+              {{elemento.jugada_proxima}} con id={{ elemento.diccionario}}</p>
     
     {% endfor %}
-    <p>{{hola}}</p>
-    <p>Lista de días: {% for dias in todos_los_dias%} {{dias}}, {%endfor%}</p>
+    <p>{{mensaje}}</p>
+    <p>Lista de días: {% for dias in dias%} {{dias}}, {%endfor%}</p>
   </body>
 </html>

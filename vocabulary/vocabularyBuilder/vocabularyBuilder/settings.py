@@ -30,10 +30,15 @@ SECRET_KEY = 'rv9ml_@jh7hjfg=zm9%7dom7lkh!-bo9lvz+@*fay^03i(87yt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '255.255.255.255',
+]
 
 
 # Application definition
@@ -68,7 +73,7 @@ WSGI_APPLICATION = 'vocabularyBuilder.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'VocabularyBuilder_db.sqlite3'),
     }
 }
 
@@ -90,3 +95,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_URL = '/entrar/'
+
+LOGIN_REDIRECT_URL = '/'
