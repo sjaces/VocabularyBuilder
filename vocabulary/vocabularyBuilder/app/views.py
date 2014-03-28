@@ -54,7 +54,8 @@ def jugar(request, id_diccionario):
     mi_usuario = request.user
     todos_diccionarios = Diccionario.objects.all()
     mis_diccionarios = get_list_or_404(todos_diccionarios, usuario = mi_usuario)
-    mi_diccionario = Diccionario.objects.get(pk = id_diccionario)
+    # mi_diccionario = Diccionario.objects.get(pk = id_diccionario)
+    mi_diccionario = get_object_or_404(todos_diccionarios, pk = id_diccionario)
     hoy = datetime.today()
 
     #Compruebo si se ha contestado una palabra y actuo en consecuencia
@@ -75,6 +76,7 @@ def jugar(request, id_diccionario):
 
     # Preparo una palabra entres las válidas para jugar
     mis_palabras = Palabra.objects.filter(diccionario = mi_diccionario).filter(jugada_proxima__lte=mi_diccionario.jugada)
+    # mis_palabras = Palabra.get_list_or_404(mi_diccionario, jugada_proxima__lte=mi_diccionario.jugada)
     numero_aleatorio = random.randint(0, len(mis_palabras)-1)
     palabra_juego = mis_palabras[numero_aleatorio]
     # palabras = get_object_or_404(diccionarios, pk=id_diccionario)
@@ -86,9 +88,11 @@ def reprogramar(request):
         dias = int(request.POST.get("dias"))
         id_palabra = request.POST.get("id")
         palabra_jugada = Palabra.objects.get(pk = id_palabra)
-        palabra_jugada.jugada_proxima += dias
+        id_diccionario = palabra_jugada.diccionario.pk
+        palabra_jugada.jugada_proxima = dias + Diccionario.objects.get(pk=id_diccionario).jugada
         palabra_jugada.save()
-        return render_to_response('index.html', locals(), context_instance=RequestContext(request))
+        # return render_to_response('jugar.html', locals(), context_instance=RequestContext(request))
+        return HttpResponseRedirect("/jugar/%s" % id_diccionario)
     else:
         return HttpResponseRedirect("/")
 
