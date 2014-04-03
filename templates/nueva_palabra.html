@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    Inicio
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="row">
+    <div class="col-md-9">
+                 <h2>Palabra para añadir a {{ mi_diccionario }}</h2>
+                 <p>{{ mi_diccionario.pk }}</p>
+                 <form id='formulario' method='post' action=''>{% csrf_token %}
+                    {{formulario.as_p}}
+                    <p><input type='submit' value='Enviar'/></p>
+                </form>
+</div>
+<div class="col-md-3">
+              <aside id="bienvenida" class="well">
+                  {% if not request.user.is_authenticated %}
+                  <h4>Hola, logueate!</h4>
+                  <a href="{% url "entrar"%}">Pincha aquí</a>
+                  
+                  {% else %}
+                          <h5>Hola, {{request.user}}</h5>
+                          <p>Para salir pulsa <a href="{% url "salir" %}">aquí</a></p>
+          
+                  {% endif %}
+              </aside>
+       </div>
+    </div>
+{% endblock contenido %}
