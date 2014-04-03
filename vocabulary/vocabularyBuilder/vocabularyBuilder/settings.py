@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'south',
     'app',
     'debug_toolbar',
 )
@@ -83,7 +84,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'es-Es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Madrid'
 
 USE_I18N = True
 

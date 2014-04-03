@@ -30,6 +30,8 @@ def home(request):
     # else:
         # Do something for anonymous users.
         # mi_usuario = 'no'
+    hoy = datetime.today()
+
 
     return render_to_response('index.html', locals(), context_instance=RequestContext(request))
 
