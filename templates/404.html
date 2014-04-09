@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    Error
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="row">
+    <div class="col-md-9">
+                 <h1>Error 404</h1>
+                 <p>{{mensaje}}</p>    
+                </div>
+</div>
+<div class="col-md-3">
+              <aside id="bienvenida" class="well">
+                  {% if not request.user.is_authenticated %}
+                  <h4>Hola, logueate!</h4>
+                  <a href="{% url "entrar"%}">Pincha aquí</a>
+                  
+                  {% else %}
+                          <h5>Hola, {{request.user}}</h5>
+                          <p>Para salir pulsa <a href="{% url "salir" %}">aquí</a></p>
+          
+                  {% endif %}
+              </aside>
+       </div>
+    </div>
+{% endblock contenido %}
