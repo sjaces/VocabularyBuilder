@@ -26,7 +26,11 @@ def home(request):
     if request.user.is_authenticated():
         # Do something for authenticated users.
         mi_usuario = request.user
-        mis_diccionarios = get_list_or_404(todos_diccionarios, usuario = mi_usuario)
+        try:
+            mis_diccionarios = get_list_or_404(todos_diccionarios, usuario = mi_usuario)
+        except:
+            mensaje = "No tienes diccionarios"
+            # raise Http404
     # else:
         # Do something for anonymous users.
         # mi_usuario = 'no'

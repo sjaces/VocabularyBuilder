@@ -18,4 +18,6 @@ urlpatterns = patterns('',
     url(r'^entrar/$', 'django.contrib.auth.views.login', name="entrar"),
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^signup/', 'userprofiles.views.signup', name='signup'),
+    url(r'^signin/', 'userprofiles.views.signin', name='signin'),
 )

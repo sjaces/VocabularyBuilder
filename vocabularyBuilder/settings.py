@@ -33,6 +33,7 @@ DEBUG = True
 # DEBUG = False
 
 TEMPLATE_DEBUG = True
+# TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -53,6 +54,7 @@ INSTALLED_APPS = (
     'south',
     'app',
     'debug_toolbar',
+    'userprofiles',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -98,6 +100,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_URL = '/entrar/'
+# STATIC_ROOT = [os.path.join(BASE_DIR, 'static')]
+
+LOGIN_URL = '/signin/'
+# LOGIN_URL = '/entrar/'
 
 LOGIN_REDIRECT_URL = '/'
+
+# backends
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'userprofiles.backends.EmailBackend',
+    )
