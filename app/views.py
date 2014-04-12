@@ -67,12 +67,17 @@ def jugar(request, id_diccionario):
     #Compruebo si se ha contestado una palabra y actuo en consecuencia
     if request.method == 'POST':
         respuesta = request.POST.get("respuesta")
-        pregunta = request.POST.get("pregunta")
+        pregunta_palA = request.POST.get("pregunta_palA")
+        pregunta_palB = request.POST.get("pregunta_palB")
         id_palabra = request.POST.get("id")
         palabra_jugada = Palabra.objects.get(pk = id_palabra)
         if (palabra_jugada.palabra_B) == unicode(respuesta):
             resultado = "correcto"
             return render_to_response('jugar.html', locals(), context_instance=RequestContext(request))
+        else:
+            resultado = "incorrecto"
+            # return render_to_response('jugar.html', locals(), context_instance=RequestContext(request))
+
     
     # Si es la primera vez que se juega este diccionario hoy, se actualiza su estado para que cuente como día jugado
     if mi_diccionario.fecha_ultima_jugada <  hoy.date():
