@@ -70,7 +70,7 @@ def jugar(request, id_diccionario):
         pregunta = request.POST.get("pregunta")
         id_palabra = request.POST.get("id")
         palabra_jugada = Palabra.objects.get(pk = id_palabra)
-        if palabra_jugada.palabra_B == respuesta:
+        if (palabra_jugada.palabra_B) == unicode(respuesta):
             resultado = "correcto"
             return render_to_response('jugar.html', locals(), context_instance=RequestContext(request))
     

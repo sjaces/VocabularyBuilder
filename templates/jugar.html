@@ -14,13 +14,7 @@
                           {{elemento.usuario}}</a> // <a href="{% url "nueva_palabra" elemento.pk %}">Añadir palabra</a> </p>
                 
                 {% endfor %}
-                <h1>Lista de mis Palabras</h1>
-                {% for elemento in mis_palabras %}
                 
-                         <p><strong>{{elemento.palabra_A}}</strong> 
-                          {{elemento.palabra_B}}  // Jugada proxima: {{elemento.jugada_proxima}}</p>
-                
-                {% endfor %}
 
                 {% if resultado %}
 
@@ -33,7 +27,7 @@
                             <input type="hidden" name="id" value="{{ palabra_jugada.pk }}">
                             {# <input type="submit"> #}
                         </form>
-                            <button id="1d">1 Día</button>
+                            <button id="1d" focus>1 Día</button>
                             <button id="2d">2 Días</button>
                             <button id="10d">10 días</button>
                     </div>
@@ -48,13 +42,22 @@
                 </div>
                 <form action="" method = "post">
                     {% csrf_token %}
-                    <input type="text" name="respuesta">
+                    <input type="text" name="respuesta" focus>
                     <input type="hidden" name="pregunta" value="{{ palabra_juego.palabra_A }}">
                     <input type="hidden" name="id" value="{{ palabra_juego.pk }}">
                     <input type="submit">
                 </form>
 
                 {% endif %}
+
+                <h1>Lista de mis Palabras</h1>
+                {% for elemento in mis_palabras %}
+                
+                         <p><strong>{{elemento.palabra_A}}</strong> 
+                          {{elemento.palabra_B}}  // Jugada proxima: {{elemento.jugada_proxima}}</p>
+                
+                {% endfor %}
+
                 <div class="alert-warning"><h5>Mi usuario es: {{mi_usuario}}</h5></div>
 </div>
 <div class="col-md-3">

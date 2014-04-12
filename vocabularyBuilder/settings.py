@@ -32,13 +32,15 @@ SECRET_KEY = 'rv9ml_@jh7hjfg=zm9%7dom7lkh!-bo9lvz+@*fay^03i(87yt'
 DEBUG = True
 # DEBUG = False
 
-TEMPLATE_DEBUG = True
-# TEMPLATE_DEBUG = False
+# TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '255.255.255.255',
+    '192.168.1.205',
+    '*',
 ]
 
 
