@@ -1,3 +1,4 @@
 VocabularyBuilder_db.sqlite3
 *.ltm
 *.txt
+*.sqlite3
