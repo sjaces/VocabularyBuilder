@@ -4,6 +4,7 @@ from app.models import *
 from app.forms import *
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.forms import *
 from django.template import RequestContext
@@ -55,6 +56,25 @@ def nueva_palabra(request, id_diccionario):
 
 
 @login_required
+def editar_palabra(request, id_palabra):
+    mi_palabra_original= Palabra.objects.get(pk = id_palabra)
+    mi_diccionario = Diccionario.objects.get(pk = mi_palabra_original.diccionario.pk)
+    if request.method=='POST':
+        formulario = PalabraForm(request.POST)
+        if formulario.is_valid():
+            mi_palabra = formulario.save(commit=False)
+            mi_palabra.diccionario = mi_diccionario
+            mi_palabra.pk = id_palabra
+            mi_palabra.jugada_proxima = mi_palabra_original.jugada_proxima
+            mi_palabra.save()
+            # return HttpResponseRedirect('/')
+    else:
+        formulario = PalabraForm(instance = mi_palabra_original)
+    return render_to_response('editar_palabra.html',{'formulario':formulario, 'mi_diccionario':mi_diccionario.nombre, 'mensajeError': mi_palabra_original}, context_instance=RequestContext(request))
+
+
+@login_required
+@never_cache
 def jugar(request, id_diccionario):
     respuesta = "No hay respusta"
     mi_usuario = request.user

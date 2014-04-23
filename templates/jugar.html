@@ -33,6 +33,7 @@ Inicio
             <button id="1d" autofocus>1 Día</button>
             <button id="2d">2 Días</button>
             <button id="10d">10 días</button>
+            <button id="15d">15 días</button>
         </div>
 
 
@@ -47,6 +48,8 @@ Inicio
 
             <br>La palabra era: <br>
             {{ pregunta_palA }} -> {{ pregunta_palB}}
+
+            <a href="{% url "editar_palabra" palabra_jugada.pk %}">Editar palabra</a>
 
             {%endif%}
 
@@ -110,6 +113,11 @@ $(document).ready( function (){
     })
     $('#10d').on('click', function (){
         $('#dias').val('10');
+        $('#form_dias').submit();
+
+    })
+    $('#15d').on('click', function (){
+        $('#dias').val('15');
         $('#form_dias').submit();
 
     })
